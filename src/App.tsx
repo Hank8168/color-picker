@@ -1,10 +1,12 @@
+import "bulma/css/bulma.min.css";
 import { ColorPicker } from "./ColorPicker/ColorPicker";
-import { Palette } from "./ColorPicker/Palette"
 
-function App() {
+export default function App() {
   return (
-    <ColorPicker />
+    <div className="section">
+      <div className="container">
+        <ColorPicker />
+      </div>
+    </div>
   );
 }
-;
-export default App

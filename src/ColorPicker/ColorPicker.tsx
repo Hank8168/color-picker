@@ -1,13 +1,14 @@
 import './ColorPicker.scss'
 import { FC } from 'react';
 import _ from 'lodash';
-import { Palette } from './Palette';
-import { hsl } from './util';
+import { H } from './H';
+import { S } from './S';
+import { L } from './L';
 
 export const ColorPicker: FC = () => {
     return (
         <div className="color-picker">
-            <Palette colors={_.range(360).map(h => hsl(h, 100, 50))} />
+            <L hue={200} />
         </div>
     );
 };
