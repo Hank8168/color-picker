@@ -4,6 +4,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        .rgb {
+            font-size: 1.5em;
+            font-weight: bold;
+    }
+    .copy {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+     }
     }
     .palette {
         user-select: none;

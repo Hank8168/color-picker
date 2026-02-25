@@ -11,7 +11,7 @@ interface Props {
 export const L: FC<Props> = ({ initVal, hue, onSelect }) => {
     return ( 
     <Palette
-        initVal={50}
+        initVal={initVal}
         colors={_.range(101).map(l => hsl(hue, 100, l))}
         onSelect={onSelect}
         />
