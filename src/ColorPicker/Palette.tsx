@@ -3,17 +3,18 @@ import  { FC, useState } from 'react';
 interface Props {
     initVal?: number;
     colors: string[];
+    onSelect: (val: number) => void;
 }
 
-export const Palette: FC<Props> = ({ initVal, colors}) => {
+export const Palette: FC<Props> = ({ initVal, colors, onSelect }) => {
     const [val, setVal] = useState<number>(initVal ?? 0);
     return (
         <div className="palette">
             {colors.map((c, i) =>
                 <div style={{ backgroundColor: c }} 
                 className="cell is-clickable"
-                onClick={() => setVal(i)}
-                onMouseEnter={e => (e.buttons & 1) && setVal(i)}
+                onClick={() => {setVal(i); onSelect(i);}}
+                onMouseEnter={e => { if (e.buttons & 1) { setVal(i); onSelect(i); }}}
                 key={c}>
                     <span className="val" hidden={i !== val}>{i}</span>
                     </div>

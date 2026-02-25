@@ -4,8 +4,16 @@ import _ from 'lodash';
 import { hsl } from './util';
 
 interface Props {
+    initVal: number;
     hue: number;
+    onSelect: (v: number) => void;
 }
-export const S: FC<Props> = ({ hue }) => {
-    return <Palette colors={_.range(101).map(s => hsl(hue, s, 50))} />
+export const S: FC<Props> = ({ initVal, hue, onSelect }) => {
+    return(
+ <Palette
+    initVal={initVal}
+    colors={_.range(101).map(s => hsl(hue, s, 50))} 
+    onSelect={onSelect}
+    />
+    );
 }
