@@ -5,7 +5,8 @@ export default function App() {
   return (
     <div className="section">
       <div className="container">
-        <ColorPicker />
+        <input type="color" style={{width: 150, height: 150}} />
+        
       </div>
     </div>
   );

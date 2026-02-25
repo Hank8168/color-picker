@@ -1,4 +1,4 @@
-import { useState, FC } from "react";
+import { useState, FC, useEffect, memo, useCallback } from "react";
 import { H } from "./H";
 import { S } from "./S";
 import { L } from "./L";
@@ -13,9 +13,13 @@ export const HSL: FC<Props> = ({ onSelect }) => {
     const [s, setS] = useState<number>(initS);
     const [l, setL] = useState<number>(initL);
 
-    const handleHSelect = (h: number) => { setH(h); onSelect(h, s, l); };
-    const handleSSelect = (s: number) => { setH(h); onSelect(h, s, l); };
-    const handleLSelect = (l: number) => { setH(h); onSelect(h, s, l); };
+    useEffect(() => {
+        onSelect(h, s, l);
+    }, [h, s, l]);
+
+    const handleHSelect = (h: number) => { setH(h);  };
+    const handleSSelect = (s: number) => { setS(s);  };
+    const handleLSelect = useCallback((l: number) => { setL(l); }, []);
 
     return(
         <div>
@@ -25,3 +29,5 @@ export const HSL: FC<Props> = ({ onSelect }) => {
         </div>
     );
 }
+
+export const MemoHSL = memo(HSL);

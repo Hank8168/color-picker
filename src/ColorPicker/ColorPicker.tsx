@@ -1,8 +1,8 @@
 import './ColorPicker.scss';
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import _ from 'lodash';
 import cv from 'color-convert';
-import { HSL } from './HSL';
+import { HSL, MemoHSL } from './HSL';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
 
@@ -13,6 +13,11 @@ export const ColorPicker: FC = () => {
     const[r, g, b] = rgb;
     const fontColor = 0.299 * r + 0.587 * g + 0.114 *b < 128 ? 'white' : 'black' ;
     
+    const handleHslSelect = useCallback(
+    (h: number, s: number, l: number) => setRgb(cv.hsl.rgb([h, s, l])),
+    []
+    );
+
     return (
         <div className="color-picker">
             <div className="columns is-mobile">
@@ -21,7 +26,8 @@ export const ColorPicker: FC = () => {
                     <p 
                     className="rgb" 
                     style={{color : fontColor}}>
-                        {rgbStr}</p>
+                        {rgbStr}
+                    </p>
                     <div 
                     className="copy is-clickable"
                     onClick={() => navigator.clipboard.writeText(rgbStr)}
@@ -31,7 +37,7 @@ export const ColorPicker: FC = () => {
                 </div>
                 </div>
             <div className="column">
-            <HSL onSelect={(h, s, l) => setRgb(cv.hsl.rgb([h, s, l]))} />
+            <MemoHSL onSelect={handleHslSelect} />
         </div>
     </div>
 </div>
